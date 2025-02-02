@@ -1,30 +1,35 @@
 from flask import Blueprint, request, jsonify
 from services.shell_service import ShellService
-
+from utils.validation import validate_shell_data
+from utils.response import create_response
+from dao.shell_dao import ShellDAO
 
 class ShellController:
-    @staticmethod
-    async def get_shells():
-        shells = await ShellService.get_all_shells()
+    def __init__(self):
+        self.dao = ShellDAO()
+        self.service = ShellService(self.dao)
+    
+    async def get_shells(self):
+        shells = await self.service.get_all_shells()
         return jsonify([shell.to_dict() for shell in shells])
 
-    @staticmethod
-    async def get_shell(id):
-        shell = await ShellService.get_shell(id)
-        return jsonify(shell.to_dict() if shell else {})
+    async def get_shell(self, id):
+        shell = await self.service.get_shell(id)
+        return create_response(shell)
 
-    @staticmethod
-    async def create_shell(data):
-        shell = await ShellService.create_shell(data)
-        return jsonify(shell.to_dict()), 201
+    async def create_shell(self):
+        data = request.get_json()
+        validate_shell_data(data)
+        shell = await self.service.create_shell(data)
+        return create_response(shell, 201)
 
 
-    @staticmethod
-    async def update_shell(id, data):
-        shell = await ShellService.update_shell(id, data)
-        return jsonify(shell.to_dict() if shell else {})
+    async def update_shell(self, id):
+        data = request.get_json()
+        validate_shell_data(data)
+        shell = await self.service.update_shell(id, data)
+        return create_response(shell)
 
-    @staticmethod
-    async def delete_shell(id):
-        await ShellService.delete_shell(id)
-        return '', 204
+    async def delete_shell(self,id):
+        await  self.service.delete_shell(id)
+        return create_response(status_code=204)

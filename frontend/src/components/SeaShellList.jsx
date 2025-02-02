@@ -21,7 +21,7 @@ const SeaShellList = () => {
     };
 
     const handleEdit = (shell) => {
-        navigate(`/edit/${shell.id}`, { state: { shell } });
+        navigate(`/shell/edit/${shell.id}`, { state: { shell } });
     };
 
     return (

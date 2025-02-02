@@ -49,7 +49,7 @@ function ShellForm() {
 
     apiCall
       .then(() => {
-        navigate('/collection');
+        navigate('/shells');
       })
       .catch(error => {
         console.error('Error:', error);
