@@ -1,4 +1,8 @@
 flask==2.0.1
 flask-cors==3.0.10
 flask-mysql-connector==1.1.0
-
+flask-sqlalchemy==2.5.1
+flask-swagger-ui==3.36.0
+pytest==6.2.4
+pytest-asyncio==0.15.1
+httpx==0.18.2

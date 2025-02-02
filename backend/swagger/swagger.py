@@ -6,13 +6,16 @@ template = {
         "version": "1.0"
     },
     "paths": {
-        "/api/shells": {
+        "/api/v1/shells": {
             "get": {
                 "tags": ["Shells"],
                 "summary": "Get all shells",
                 "responses": {
                     "200": {
                         "description": "List of all shells"
+                    },
+                    "500": {
+                        "description": "Internal server error"
                     }
                 }
             },
@@ -31,17 +34,24 @@ template = {
                             "description": {"type": "string"},
                             "location": {"type": "string"},
                             "size": {"type": "string"}
-                        }
+                        },
+                        "required": ["name", "species", "description"]
                     }
                 }],
                 "responses": {
                     "201": {
                         "description": "Shell created successfully"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "500": {
+                        "description": "Internal server error"
                     }
                 }
             }
         },
-        "/api/shells/{id}": {
+        "/api/v1/shells/{id}": {
             "get": {
                 "tags": ["Shells"],
                 "summary": "Get a shell by ID",
@@ -54,6 +64,12 @@ template = {
                 "responses": {
                     "200": {
                         "description": "Shell details"
+                    },
+                    "404": {
+                        "description": "Shell not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
                     }
                 }
             },
@@ -79,13 +95,23 @@ template = {
                                 "description": {"type": "string"},
                                 "location": {"type": "string"},
                                 "size": {"type": "string"}
-                            }
+                            },
+                            "required": ["name", "species", "description"]
                         }
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "Shell updated successfully"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Shell not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
                     }
                 }
             },
@@ -101,6 +127,12 @@ template = {
                 "responses": {
                     "204": {
                         "description": "Shell deleted successfully"
+                    },
+                    "404": {
+                        "description": "Shell not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
                     }
                 }
             }

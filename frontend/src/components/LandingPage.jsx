@@ -7,8 +7,8 @@ const LandingPage = () => {
         <div className="welcome-container">
       <h1 className="welcome-title">Welcome to Shell Luxe</h1>
       <div className="landing-buttons">
-        <Link to="/collection" className="nav-button">SeaShell Collection</Link>
-        <Link to="/add" className="nav-button">Add Seashell</Link>
+        <Link to="/shells" className="nav-button">SeaShell Collection</Link>
+        <Link to="/shell/add" className="nav-button">Add Seashell</Link>
         </div>
       </div>
     </div>

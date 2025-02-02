@@ -30,7 +30,6 @@ export const fetchShells = () => async (dispatch) => {
 export const addShell = (shellData) => async (dispatch) => {
     try {
         const response = await axiosInstance.post('/shells', shellData);
-        console.log('Added shell:', response.data);
         dispatch(addShellSuccess(response.data));
     } catch (error) {
         console.log('Error adding shell:', error);
@@ -40,7 +39,6 @@ export const addShell = (shellData) => async (dispatch) => {
 export const deleteShell = (id) => async (dispatch) => {
     try {
         await axiosInstance.delete(`/shells/${id}`);
-        console.log('Deleted shell:', id);
         dispatch(deleteShellSuccess(id));
     } catch (error) {
         console.log('Error deleting shell:', error);
