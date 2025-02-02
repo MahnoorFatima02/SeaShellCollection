@@ -11,7 +11,8 @@ class ShellDAO:
         return shell
 
     def get_shell(self, id):
-        return Shell.query.get_or_404(id)
+        shell = Shell.query.get_or_404(id)
+        return shell
 
     def update_shell(self, id, data):
         shell = Shell.query.get_or_404(id)

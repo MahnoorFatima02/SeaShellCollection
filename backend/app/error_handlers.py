@@ -4,6 +4,7 @@ from utils.custom_exceptions import NotFoundException, ValidationException, Inte
 def register_error_handlers(app):
     @app.errorhandler(ValidationException)
     def handle_validation_error(error):
+        print("Handling VALIDATION validation error")
         return jsonify({"error": str(error)}), 400
 
     @app.errorhandler(InternalServerException)

@@ -11,10 +11,10 @@ class ShellService:
         return self.dao.create_shell(data)
 
     async def get_shell(self, id):
-        self.dao.get_shell(id)
+        shell = self.dao.get_shell(id)
+        return shell
 
     async def update_shell(self, id, data):
-        print(f"Updating shell with ID: {id}")
         shell = self.dao.update_shell(id, data)
         return shell
 

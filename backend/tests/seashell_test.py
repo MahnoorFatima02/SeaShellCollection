@@ -6,9 +6,7 @@ from unittest.mock import patch, MagicMock, AsyncMock
 
 # Add the backend directory to the Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 from model.shell_model import Shell
-from services.shell_service import ShellService
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -59,9 +57,9 @@ def test_delete_shell(mock_delete_shell, async_client, test_app):
     assert delete_response.status_code == 204
 
 @patch('dao.shell_dao.ShellDAO.create_shell', new_callable=MagicMock)
-def test_create_shell_without_required_field(mock_create_shell, async_client, test_app):
-    mock_create_shell.side_effect = ValueError("species is required")
-    
+def test_create_shell_without_required_field(mock_create_shell, async_client):
+    mock_create_shell.return_value = Shell(id=1, name='Shell 1', species='Species 1', description='Description 1', location='Location 1', size='Size 1')
+
     data = {'name': 'Shell 1', 'species': '', 'description': 'Description 1', 'location': 'Location 1', 'size': 'Size 1'}
 
     response = async_client.post('/api/v1/shells', json=data)
@@ -69,8 +67,8 @@ def test_create_shell_without_required_field(mock_create_shell, async_client, te
     assert 'species is required' in response.json.get('error', '')
 
 @patch('dao.shell_dao.ShellDAO.update_shell', new_callable=MagicMock)
-def test_update_shell_without_required_field(mock_update_shell, async_client, test_app):
-    mock_update_shell.side_effect = ValueError("species is required")
+def test_update_shell_without_required_field(mock_update_shell, async_client):
+    mock_update_shell.return_value = Shell(id=1, name='Updated Shell', species='Updated Species', description='Updated Description', location='Updated Location', size='Updated Size')
     
     data = {'name': 'Shell 1', 'species': '', 'description': 'Updated Description', 'location': 'Updated Location', 'size': 'Updated Size'}
 
@@ -78,9 +76,9 @@ def test_update_shell_without_required_field(mock_update_shell, async_client, te
     assert response.status_code == 400
     assert 'species is required' in response.json.get('error', '')
 
-def test_invalid_route(async_client, test_app):
+def test_invalid_route(async_client):
     response = async_client.get('/api/v1/invalid_route')
     assert response.status_code == 404
     response_json = response.get_json()
     assert response_json is not None
-    assert 'Page not found' in response_json.get('error', '')
+    assert 'Resource Not found' in response_json.get('error', '')
