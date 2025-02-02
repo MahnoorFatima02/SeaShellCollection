@@ -20,11 +20,18 @@ def test_app():
         # Register blueprints
         from routes.shell_routes import shell_bp
         app.register_blueprint(shell_bp, url_prefix='/api/v1')
+        
+        # Register error handlers
+        from app import register_error_handlers
+        register_error_handlers(app)
+        
         yield app
        
 @pytest.fixture(scope='function')
 def test_client(test_app):
-    return test_app.test_client()
+    client = test_app.test_client()
+    client.environ_base["werkzeug.debug"] = True
+    return client
 
 @pytest.fixture(scope='function')
 def mock_db():
