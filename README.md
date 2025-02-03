@@ -2,6 +2,17 @@
 
 SeaShell API is a Flask-based web application for managing sea shells. It provides a RESTful API for creating, reading, updating, and deleting shell records.
 
+## Project Pictures:
+
+Below images illustrate our project's display:
+
+<p>
+<img src="https://github.com/MahnoorFatima02/kone-challenge/blob/main/Images/MainPage.png" alt="Main Page" width="350" height="180" /> &nbsp;&nbsp;
+<img src="https://github.com/MahnoorFatima02/kone-challenge/blob/main/Images/ShellAddForm.png" alt="Add SeaShell page" width="350" height="180" /> &nbsp;&nbsp;
+<img src="https://github.com/MahnoorFatima02/kone-challenge/blob/main/Images/RequiredFields.png" alt="Required Fields" width="350" height="180" /> &nbsp;&nbsp;
+<img src="https://github.com/MahnoorFatima02/kone-challenge/blob/main/Images/ShellCollection.png" alt="SeaShell Collection" width="350" height="180" /> &nbsp;&nbsp;
+</p>
+
 ## Table of Contents
 
 - [Project Structure](#project-structure)
