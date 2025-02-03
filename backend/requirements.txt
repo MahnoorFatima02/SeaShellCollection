@@ -6,3 +6,5 @@ flask-swagger-ui==3.36.0
 pytest==6.2.4
 pytest-asyncio==0.15.1
 httpx==0.18.2
+Flask-Migrate==3.1.0
+pytest-mock==3.6.1
