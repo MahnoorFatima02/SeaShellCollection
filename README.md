@@ -18,12 +18,12 @@ SeaShell API is a Flask-based web application for managing sea shells. It provid
 - Python 3.8+
 - Flask==2.0.1
 - Flask-SQLAlchemy==2.5.1
-- Flask-Migrate
+- Flask-Migrate==3.1.0
 - Flask-Cors==3.0.10
 - Flask-Swagger-UI==3.36.0
 - Pytest==6.2.4
 - Pytest-asyncio==0.15.1
-- Docker
+- Docker==20.10.14
 
 ## Testing
 
