@@ -18,3 +18,4 @@ asyncmy
 openai
 python-multipart
 asyncpg
+psycopg2-binary
