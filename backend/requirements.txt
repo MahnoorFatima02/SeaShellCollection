@@ -14,3 +14,7 @@ pytest-mock==3.6.1
 aiomysql
 testcontainers
 pytest-cov
+asyncmy
+python-multipart
+python-jose
+openai

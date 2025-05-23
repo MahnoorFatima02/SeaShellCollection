@@ -19,14 +19,6 @@ app.add_middleware(
 # Security scheme for Swagger UI
 bearer_scheme = HTTPBearer()
 
-
-# def get_current_user(credentials: HTTPAuthorizationCredentials = Security(bearer_scheme)):
-#     token = credentials.credentials
-#     # Validate token here (e.g., decode JWT, check DB, etc.)
-#     if not token or token != "your_expected_token":
-#         raise HTTPException(status_code=401, detail="Invalid or missing token")
-#     return token
-
 # Register routes
 app.include_router(shell_router, prefix="/api/v1")
 app.include_router(user_router, prefix="/api/v1")
