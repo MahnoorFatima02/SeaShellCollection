@@ -17,3 +17,4 @@ pytest-cov
 asyncmy
 openai
 python-multipart
+asyncpg
