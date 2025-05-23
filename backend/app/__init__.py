@@ -1,56 +1,35 @@
+from fastapi import FastAPI, Depends, Security, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from routes.shell_routes import shell_router
+from app.error_handlers import register_error_handlers
+from routes.user_routes import user_router
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
-from flask import Flask, jsonify
-from flask_sqlalchemy import SQLAlchemy
-from flask_cors import CORS
-from config.config import Config
-from flask_swagger_ui import get_swaggerui_blueprint
-from swagger.swagger import template
-from flask_migrate import Migrate, upgrade
-from .error_handlers import register_error_handlers 
+app = FastAPI(title="SeaShell API", description="API for managing seashell collections", version="1.0")
 
-db = SQLAlchemy()
-migrate = Migrate()
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-def create_app():
-    app = Flask(__name__)
-    app.config.from_object(Config)
-    
-    
-    # Initialize extensions
-    db.init_app(app)
-    migrate.init_app(app, db)
-    CORS(app)
- 
-    # Create database tables
-    with app.app_context():
-        upgrade()
-    
-    # Register blueprints
-    from routes.shell_routes import shell_bp 
-    app.register_blueprint(shell_bp, url_prefix='/api/v1')
+# Security scheme for Swagger UI
+bearer_scheme = HTTPBearer()
 
 
-    # Serve swagger.json
-    @app.route('/static/swagger.json')
-    def serve_swagger():
-        return jsonify(template)
+# def get_current_user(credentials: HTTPAuthorizationCredentials = Security(bearer_scheme)):
+#     token = credentials.credentials
+#     # Validate token here (e.g., decode JWT, check DB, etc.)
+#     if not token or token != "your_expected_token":
+#         raise HTTPException(status_code=401, detail="Invalid or missing token")
+#     return token
 
-    # Swagger UI configuration
-    SWAGGER_URL = '/api/docs'
-    API_URL = '/static/swagger.json'
-    
-    swagger_ui_blueprint = get_swaggerui_blueprint(
-        SWAGGER_URL,
-        API_URL,
-        config={
-            'app_name': "SeaShell API"
-        }
-    )
-    
-    app.register_blueprint(swagger_ui_blueprint, url_prefix=SWAGGER_URL)
-    
-    # Register custom error handlers
-    register_error_handlers(app)
-    
-    
-    return app
+# Register routes
+app.include_router(shell_router, prefix="/api/v1")
+app.include_router(user_router, prefix="/api/v1")
+
+# Register error handlers
+register_error_handlers(app)

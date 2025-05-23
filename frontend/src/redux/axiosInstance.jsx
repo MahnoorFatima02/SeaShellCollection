@@ -1,11 +1,25 @@
 import axios from "axios";
+import store from "./store";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5000/api/v1",
+  baseURL: "http://localhost:8000/api/v1",
   timeout: 5000,
   headers: {
     "Content-Type": "application/json",
   },
 });
+
+// Add request interceptor
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const state = store.getState();
+    const accessToken = state.user.accessToken;
+    if (accessToken) {
+      config.headers["Authorization"] = `Bearer ${accessToken}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 export default axiosInstance;
