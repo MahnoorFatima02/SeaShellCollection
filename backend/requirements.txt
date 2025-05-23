@@ -16,3 +16,4 @@ testcontainers
 pytest-cov
 asyncmy
 openai
+python-multipart
