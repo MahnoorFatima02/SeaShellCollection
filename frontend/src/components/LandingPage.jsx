@@ -9,6 +9,7 @@ const LandingPage = () => {
       <div className="landing-buttons">
         <Link to="/shells" className="nav-button">SeaShell Collection</Link>
         <Link to="/shell/add" className="nav-button">Add Seashell</Link>
+        <Link to="/find-shell" className="nav-button">Find a Shell</Link>
         </div>
       </div>
     </div>

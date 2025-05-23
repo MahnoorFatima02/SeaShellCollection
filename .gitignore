@@ -5,3 +5,30 @@ __pycache__/
 *.pyo
 .DS_Store
 
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Environment variables
+.env
+.env.*
+
+# Mac-specific
+.DS_Store
+
+# Node-related
+node_modules/
+
+# Log and temp files
+*.log
+*.sqlite3
+*.db
+*.tmp
+*.swp
+

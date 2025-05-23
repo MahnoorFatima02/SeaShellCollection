@@ -1,13 +1,15 @@
 
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchShells, deleteShell } from '../redux/actions';
+import { fetchShells, deleteShell } from '../redux/seaShell/actions';
+import './SeaShell.css';
 
 const SeaShellList = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     // const state = useSelector(state => state);
+    const [warning, setWarning] = useState("");
 
     // Select only the shells array from state
     const seashells = useSelector(state => state.shells.shells) || [];
@@ -16,9 +18,18 @@ const SeaShellList = () => {
         dispatch(fetchShells());
     }, [dispatch]);
 
-    const handleRemoveSeashell = (id) => {
-        dispatch(deleteShell(id));
-    };
+ const handleRemoveSeashell = async (id) => {
+  try {
+    await dispatch(deleteShell(id));
+    setWarning("");
+  } catch (error) {
+    if (error.response && error.response.status === 401) {
+      setWarning("⚠️ Please login to continue!");
+    } else {
+      setWarning("Something went wrong.");
+    }
+  }
+};
 
     const handleEdit = (shell) => {
         navigate(`/shell/edit/${shell.id}`, { state: { shell } });
@@ -26,9 +37,7 @@ const SeaShellList = () => {
 
     return (
         <div className="seashell-container">
-            <button className="back-button" onClick={() => navigate('/')}>
-                Back to Home
-            </button>
+        {warning && <div className="login-warning">{warning}</div>}
             <h1>SEASHELL COLLECTION</h1>
             <div className="seashell-list">
                     {Array.isArray(seashells) && seashells.length > 0 ? (
@@ -50,6 +59,9 @@ const SeaShellList = () => {
                         </div>
                     )}
                 </div>
+                   <button className="back-button-fixed-bottom" onClick={() => navigate('/')}>
+                Back
+            </button>
         </div>
     );
 };

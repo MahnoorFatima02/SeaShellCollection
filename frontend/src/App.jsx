@@ -1,16 +1,35 @@
 import React from "react";
 import Router from "./routes";
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import store from "./redux/store";
 import './App.css'; 
+import NavBar from "./components/NavBar";
+import { useNavigate } from "react-router-dom";
+import { LOGOUT } from "./redux/user/actionTypes";
 
+const AppContent = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-const App = () => {
+  const handleLogout = () => {
+    dispatch({ type: LOGOUT });
+    navigate("/");
+  };
+
   return (
-    <Provider store={store}>
-      <Router />
-    </Provider>
+    <>
+      <NavBar onLogout={handleLogout} />
+      <div className="main-content">
+        <Router />
+      </div>
+    </>
   );
 };
+
+const App = () => (
+  <Provider store={store}>
+    <AppContent />
+  </Provider>
+);
 
 export default App;

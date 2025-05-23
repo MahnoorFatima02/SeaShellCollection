@@ -1,22 +1,12 @@
-# from database.db import db
-from app import db
+from sqlalchemy import Column, Integer, String, Text
+from database.db import Base
 
-class Shell(db.Model):
+class Shell(Base):
     __tablename__ = 'shells'
-    
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    species = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.Text, nullable=False)
-    location = db.Column(db.String(100))
-    size = db.Column(db.String(50))
 
-    def to_dict(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'species': self.species,
-            'description': self.description,
-            'location': self.location,
-            'size': self.size
-        }
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(100), nullable=False)
+    species = Column(String(100), nullable=False)
+    description = Column(Text, nullable=False)
+    location = Column(String(100))
+    size = Column(String(50))
