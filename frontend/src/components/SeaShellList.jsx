@@ -59,6 +59,12 @@ const SeaShellList = () => {
                         </div>
                     )}
                 </div>
+                            <button
+            className="add-shell-button-fixed-bottom"
+            onClick={() => navigate('/shell/add')}
+        >
+            Add Shell
+        </button>
                    <button className="back-button-fixed-bottom" onClick={() => navigate('/')}>
                 Back
             </button>

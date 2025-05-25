@@ -342,11 +342,19 @@ h1 {
 
 .back-button-fixed-bottom {
     font-size: 0.7rem;
-  position: absolute;
+  position: fixed;
   left: 24px;
   bottom: 24px;
   margin: 0;
   z-index: 10;
+}
+
+.add-shell-button-fixed-bottom {
+    font-size: 0.7rem;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
 }
 
   /* Not Found Page   */
