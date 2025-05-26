@@ -1,11 +1,13 @@
-from fastapi import FastAPI, Depends, Security, HTTPException
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes.shell_routes import shell_router
 from app.error_handlers import register_error_handlers
 from routes.user_routes import user_router
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi.security import HTTPBearer
 
-app = FastAPI(title="SeaShell API", description="API for managing seashell collections", version="1.0")
+app = FastAPI(title="SeaShell API", 
+              description="API for managing seashell collections",
+              version="1.0")
 
 # Add CORS middleware
 app.add_middleware(
@@ -19,13 +21,6 @@ app.add_middleware(
 # Security scheme for Swagger UI
 bearer_scheme = HTTPBearer()
 
-
-# def get_current_user(credentials: HTTPAuthorizationCredentials = Security(bearer_scheme)):
-#     token = credentials.credentials
-#     # Validate token here (e.g., decode JWT, check DB, etc.)
-#     if not token or token != "your_expected_token":
-#         raise HTTPException(status_code=401, detail="Invalid or missing token")
-#     return token
 
 # Register routes
 app.include_router(shell_router, prefix="/api/v1")

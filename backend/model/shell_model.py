@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, Text
 from database.db import Base
 
+
 class Shell(Base):
     __tablename__ = 'shells'
 

@@ -1,6 +1,3 @@
-import React from 'react';
-import '../app.css';  // Import the CSS file
-
 const NotFound = () => {
   return (
     <div className="not-found-container">

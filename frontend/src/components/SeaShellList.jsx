@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchShells, deleteShell } from '../redux/seaShell/actions';
@@ -59,6 +59,12 @@ const SeaShellList = () => {
                         </div>
                     )}
                 </div>
+                            <button
+            className="add-shell-button-fixed-bottom"
+            onClick={() => navigate('/shell/add')}
+        >
+            Add Shell
+        </button>
                    <button className="back-button-fixed-bottom" onClick={() => navigate('/')}>
                 Back
             </button>

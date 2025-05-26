@@ -1,4 +1,3 @@
-import React from "react";
 import Router from "./routes";
 import { Provider, useDispatch } from "react-redux";
 import store from "./redux/store";

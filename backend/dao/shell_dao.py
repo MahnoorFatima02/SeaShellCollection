@@ -18,7 +18,8 @@ class ShellDAO:
         return shell
 
     async def get_shell(self, id: int):
-        result = await self.db_session.execute(select(Shell).where(Shell.id == id))
+        result = await self.db_session.execute(select(Shell)
+                                               .where(Shell.id == id))
         shell = result.scalars().first()
         if not shell:
             raise ValueError("Shell not found")

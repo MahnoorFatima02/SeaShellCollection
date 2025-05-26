@@ -1,8 +1,5 @@
-
-
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import axiosInstance from '../redux/axiosInstance';
 import { useDispatch } from 'react-redux';
 import { addShell, editShell } from '../redux/seaShell/actions';
 
@@ -11,7 +8,6 @@ function ShellForm() {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
-  const shellToEdit = location.state?.shell; 
   const [formData, setFormData] = useState({
     name: '',
     species: '',
@@ -35,8 +31,6 @@ function ShellForm() {
       return;
     }
 
-    console.log('Submitting form data:', formData); 
-
       try {
       if (id) {
         await dispatch(editShell(id, formData));
@@ -46,12 +40,20 @@ function ShellForm() {
       setWarning("");
       navigate('/shells');
     } catch (error) {
-      if (error.response && error.response.status === 401) {
-        setWarning("⚠️ Please login to continue!");
+    if (error.response && error.response.status === 401) {
+      setWarning("⚠️ Please login to continue!");
+    } else if (error.response && error.response.status === 422) {
+      const details = error.response.data?.detail;
+      if (Array.isArray(details)) {
+        const messages = details.map((d) => d.msg).join(" ");
+        setWarning(`⚠️ Invalid form data: ${messages}`);
       } else {
-        setWarning("Something went wrong.");
+        setWarning("⚠️ Invalid form data: Please check your input and try again.");
       }
+    } else {
+      setWarning("Something went wrong.");
     }
+  }
   };
 
   return (

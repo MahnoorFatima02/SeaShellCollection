@@ -6,16 +6,19 @@ from dao.shell_dao import ShellDAO
 from database.db import get_db
 from schemas.shell_schemas import ShellCreate, ShellUpdate, ShellRead, SuggestResponse
 from utils.auth import get_current_user
-import openai
 import httpx
 from pydantic import BaseModel
 from utils.llm_helpers import get_response_from_llm
-import os
+
+GBIF_API_BASE_URL = "https://api.gbif.org/v1/species/search"
+
 
 class SuggestRequest(BaseModel):
     keyword: str
  
+ 
 shell_router = APIRouter()
+
 
 @shell_router.get(
     "/shells",
@@ -29,10 +32,14 @@ async def get_shells(db: AsyncSession = Depends(get_db)) -> List[ShellRead]:
     service = ShellService(ShellDAO(db))
     return await service.get_all_shells()
 
+
 @shell_router.get(
     "/shells/{id}",
     summary="Get shell by ID (protected)",
-    description="Returns a single shell by its unique ID. Requires authentication.",
+    description=(
+        "Returns a single shell by its unique ID. "
+        "Requires authentication."
+    ),
     response_model=ShellRead,
     status_code=status.HTTP_200_OK,
 )
@@ -45,10 +52,12 @@ async def get_shell(
     service = ShellService(ShellDAO(db))
     return await service.get_shell(id)
 
+
 @shell_router.post(
     "/shells",
     summary="Create a new shell (protected)",
-    description="Creates a new shell entry in the collection. Requires authentication.",
+    description="Creates a new shell entry in the collection."
+    "Requires authentication.",
     response_model=ShellRead,
     status_code=status.HTTP_201_CREATED,
 )
@@ -60,6 +69,7 @@ async def create_shell(
     """Create a new shell."""
     service = ShellService(ShellDAO(db))
     return await service.create_shell(shell.dict())
+
 
 @shell_router.put(
     "/shells/{id}",
@@ -78,6 +88,7 @@ async def update_shell(
     service = ShellService(ShellDAO(db))
     return await service.update_shell(id, shell.dict(exclude_unset=True))
 
+
 @shell_router.delete(
     "/shells/{id}",
     summary="Delete a shell (protected)",
@@ -93,6 +104,7 @@ async def delete_shell(
     service = ShellService(ShellDAO(db))
     await service.delete_shell(id)
     return Response(status_code=status.HTTP_204_NO_CONTENT)
+
 
 @shell_router.post(
     "/shells/creative",
@@ -119,8 +131,8 @@ async def suggest_shell_gbif(req: SuggestRequest):
 )
 
 async def suggest_shell_gbif(req: SuggestRequest):
-    mollusk_taxon_key = 52  # Mollusca
-    url = f"https://api.gbif.org/v1/species/search?q={req.keyword}&limit=10&higherTaxonKey={mollusk_taxon_key}"
+    mollusk_taxon_key = 52
+    url = f"{GBIF_API_BASE_URL}?q={req.keyword}&limit=10&higherTaxonKey={mollusk_taxon_key}"
     async with httpx.AsyncClient() as client:
         gbif_response = await client.get(url)
         if gbif_response.status_code != 200:

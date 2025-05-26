@@ -22,7 +22,6 @@ const editShellSuccess = (shell) => ({
     payload: shell,
 })
 
-// Thunk Actions
 export const fetchShells = () => async (dispatch) => {
     try {
         const response = await axiosInstance.get('/shells');

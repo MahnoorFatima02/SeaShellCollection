@@ -1,7 +1,6 @@
-import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import PropTypes from "prop-types";
 
 
 const NavBar = ({ onLogout }) => {
@@ -27,5 +26,10 @@ const username = useSelector(state => state.user.userInfo?.username);
     </nav>
   );
 };
+
+NavBar.propTypes = {
+  onLogout: PropTypes.func.isRequired,
+};
+
 
 export default NavBar;

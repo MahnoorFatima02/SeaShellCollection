@@ -9,7 +9,7 @@ SHELL_DESCRIPTION = "Description 1"
 SHELL_LOCATION = "Location 1"
 SHELL_SIZE = "Size 1"
 # nosec: test-only credential
-TEST_USERNAME = "testuser22"
+TEST_USERNAME = "testuser222"
 TEST_PASSWORD = os.environ.get("TEST_PASSWORD", "testpass")
 
 @pytest.mark.asyncio
@@ -17,10 +17,14 @@ async def test_user_registration_and_login(async_client):
     # Register user
     response = await async_client.post(SIGNUP_SHELLS_ENDPOINT, json={"username": TEST_USERNAME, "password": TEST_PASSWORD})
     assert response.status_code == 200
-    assert response.json()["msg"] == "User created"
+    assert "access_token" in response.json()
+    assert response.json()["token_type"] == "bearer"
 
     # Login user
-    response = await async_client.post(LOGIN_SHELLS_ENDPOINT, json={"username": TEST_USERNAME, "password": TEST_PASSWORD})
+    response = await async_client.post(
+    LOGIN_SHELLS_ENDPOINT,
+    data={"username": TEST_USERNAME, "password": TEST_PASSWORD}
+    )
     assert response.status_code == 200
     token = response.json()["access_token"]
     assert token

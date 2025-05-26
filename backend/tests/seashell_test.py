@@ -26,7 +26,11 @@ TEST_PASSWORD = os.environ.get("TEST_PASSWORD", "testpass")
 @pytest.fixture
 async def auth_headers_fixture(async_client):
     await async_client.post("/api/v1/signup", json={"username": TEST_USERNAME, "password": TEST_PASSWORD})
-    response = await async_client.post("/api/v1/login", json={"username": TEST_USERNAME, "password": TEST_PASSWORD})
+    response = await async_client.post(
+    "/api/v1/login",
+    data={"username": TEST_USERNAME, "password": TEST_PASSWORD}
+    )
+    print("LOGIN RESPONSE:", response.status_code, response.json())
     token = response.json()["access_token"]
     return {"Authorization": f"Bearer {token}"}
 
@@ -59,11 +63,11 @@ async def test_get_shells(mock_get_all_shells, async_client):
     mock_get_all_shells.return_value = [
         {
             "id": 1,
-            "name": "Shell 1",
-            "species": "Species 1",
-            "description": "Description 1",
-            "location": "Location 1",
-            "size": "Size 1"
+            "name": SHELL_NAME,
+            "species": SHELL_SPECIES,
+            "description": SHELL_DESCRIPTION,
+            "location": SHELL_LOCATION,
+            "size": SHELL_SIZE
         },
         {
             "id": 2,
