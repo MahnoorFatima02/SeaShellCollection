@@ -1,9 +1,5 @@
 # SeaShell Collection
 
-SeaShell Collection is a full-stack web application for managing sea shells, built with **FastAPI** (backend), **React** (frontend), and **PostgreSQL** (Neon cloud database). It supports user authentication, CRUD operations, and modern CI/CD practices.
-
-# SeaShell Collection
-
 [![Frontend](https://img.shields.io/badge/Live%20Frontend-blue?style=flat-square)](https://seashellcollection.onrender.com/)
 [![Backend](https://img.shields.io/badge/Live%20Backend-green?style=flat-square)](https://seashellcollection-backend.onrender.com/)
 [![Swagger Docs](https://img.shields.io/badge/Swagger%20UI-orange?style=flat-square)](https://seashellcollection-backend.onrender.com/docs)
