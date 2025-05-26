@@ -2,18 +2,18 @@ from pydantic import BaseModel, constr, ConfigDict
 from typing import Optional, List
 
 class ShellCreate(BaseModel):
-    name: constr(min_length=1)
-    species: constr(min_length=1)
-    description: constr(min_length=1)
+    name: constr(min_length=1, strict=True)
+    species: constr(min_length=1, strict=True)
+    description: constr(min_length=1, strict=True)
     location: Optional[str] = None
-    size: constr(min_length=1)
+    size: constr(min_length=1, strict=True)
 
 class ShellUpdate(BaseModel):
-    name: Optional[constr(min_length=1)] = None
-    species: Optional[constr(min_length=1)] = None
-    description: Optional[constr(min_length=1)] = None
+    name: Optional[constr(min_length=1,strict=True)] = None
+    species: Optional[constr(min_length=1, strict=True)] = None
+    description: Optional[constr(min_length=1, strict=True)] = None
     location: Optional[str] = None
-    size: Optional[constr(min_length=1)] = None
+    size: Optional[constr(min_length=1, strict=True)] = None
 
 class ShellRead(BaseModel):
     id: int

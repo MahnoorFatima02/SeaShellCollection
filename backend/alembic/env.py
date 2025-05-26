@@ -3,15 +3,10 @@ from sqlalchemy import engine_from_config, pool
 from alembic import context
 import sys
 import os
-
 # Load .env variables
 from dotenv import load_dotenv
 load_dotenv()
-
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
-from model.shell_model import Shell
-from model.user_model import User
 from database.db import Base
 
 config = context.config

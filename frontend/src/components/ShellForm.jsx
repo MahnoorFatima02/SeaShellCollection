@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import axiosInstance from '../redux/axiosInstance';
 import { useDispatch } from 'react-redux';
 import { addShell, editShell } from '../redux/seaShell/actions';
 
@@ -9,7 +8,6 @@ function ShellForm() {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
-  const shellToEdit = location.state?.shell; 
   const [formData, setFormData] = useState({
     name: '',
     species: '',
@@ -32,8 +30,6 @@ function ShellForm() {
     if (!formData.name.trim() || !formData.species.trim() || !formData.description.trim()) {
       return;
     }
-
-    console.log('Submitting form data:', formData); 
 
       try {
       if (id) {

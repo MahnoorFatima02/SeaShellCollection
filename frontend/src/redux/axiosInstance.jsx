@@ -9,7 +9,6 @@ const axiosInstance = axios.create({
   },
 });
 
-// Add request interceptor
 axiosInstance.interceptors.request.use(
   (config) => {
     const state = store.getState();
@@ -21,5 +20,6 @@ axiosInstance.interceptors.request.use(
   },
   (error) => Promise.reject(error)
 );
+
 
 export default axiosInstance;

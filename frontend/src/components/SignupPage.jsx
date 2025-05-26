@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { login, signup } from "../redux/user/actions";
+import { signup } from "../redux/user/actions";
 import { useDispatch } from "react-redux";
 
 const SignupPage = () => {

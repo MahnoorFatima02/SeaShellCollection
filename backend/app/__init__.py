@@ -1,11 +1,13 @@
-from fastapi import FastAPI, Depends, Security, HTTPException
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes.shell_routes import shell_router
 from app.error_handlers import register_error_handlers
 from routes.user_routes import user_router
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi.security import HTTPBearer
 
-app = FastAPI(title="SeaShell API", description="API for managing seashell collections", version="1.0")
+app = FastAPI(title="SeaShell API", 
+              description="API for managing seashell collections",
+              version="1.0")
 
 # Add CORS middleware
 app.add_middleware(

@@ -28,8 +28,6 @@
     margin: 0 ;
     padding: 2rem 2rem 0 2rem;
     text-align: center;
-    /* background-color: #9dcff3; */
-    min-height: 100vh;
     color: white;
   background: 
     linear-gradient(
@@ -111,8 +109,6 @@
 
 button {
   background: linear-gradient(145deg, var(--azure), var(--teal));
-  color: white;
-  border: none;
   padding: 12px 24px;
   border-radius: 8px;
   cursor: pointer;
@@ -154,8 +150,6 @@ h1 {
   font-size: 3rem;
   text-transform: uppercase;
   color: var(--teal);
-  /* -webkit-text-stroke: 2px #008080;   */
-  /* -webkit-text-stroke: 2px var(--teal); */
   text-shadow: 
     3px 3px 0 var(--caribbean),
     -1px -1px 0 var(--caribbean),  
@@ -171,12 +165,9 @@ h1 {
   /* Landign Page   */
 
 .seashell-title {
-  margin-top: 150px;
   font-size: 3rem;
   text-transform: uppercase;
   color: rgb(52, 0, 240);
-  /* -webkit-text-stroke: 2px #008080;   */
-  /* -webkit-text-stroke: 2px var(--teal); */
   text-shadow: 
     3px 3px 0 var(--caribbean),
     -1px -1px 0 var(--caribbean),  
@@ -242,9 +233,7 @@ h1 {
 .nav-button {
     margin: 62px 20px 0 20px;
   padding: 1rem 2rem;
-  font-size: 1.2rem;
   background: linear-gradient(145deg, var(--azure), var(--teal));
-  border: 2px solid #fff176; 
   color: rgb(248, 167, 4); 
   border-radius: 8px;
   cursor: pointer;
@@ -344,7 +333,7 @@ h1 {
     font-size: 0.7rem;
   position: fixed;
   left: 24px;
-  bottom: 24px;
+  top: 84px;
   margin: 0;
   z-index: 10;
 }
@@ -352,7 +341,7 @@ h1 {
 .add-shell-button-fixed-bottom {
     font-size: 0.7rem;
   position: fixed;
-  bottom: 20px;
+  top: 84px;
   right: 20px;
   z-index: 100;
 }

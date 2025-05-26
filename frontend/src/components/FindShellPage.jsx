@@ -1,4 +1,3 @@
-import React from "react";
 import ShellSuggester from "./ShellSuggester";
 import { useNavigate } from "react-router-dom";
 

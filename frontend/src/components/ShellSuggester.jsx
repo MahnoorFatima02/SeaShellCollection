@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axiosInstance from "../redux/axiosInstance";
 
 const ShellSuggester = () => {

@@ -4,7 +4,6 @@ import { jwtDecode } from "jwt-decode";
 import {
   LOGIN,
   SIGNUP,
-  FETCH_USER,
   LOGOUT,
 } from "./actionTypes";
 
@@ -50,29 +49,6 @@ export const signup = createAsyncThunk(
   };
   }
 );
-
-// Refresh access token
-// export const refreshAccessToken = createAsyncThunk(
-//   REFRESH_ACCESS_TOKEN,
-//   async (_, { getState, rejectWithValue }) => {
-//     const state = getState();
-//     const refreshToken = state.user.refreshToken;
-
-//     if (!refreshToken) {
-//       return rejectWithValue("No refresh token found");
-//     }
-
-//     const response = await axiosInstance.post(
-//       "refresh-token",
-//       JSON.stringify(refreshToken)
-//     );
-
-//     if (!response.data) {
-//       throw new Error("Failed to fetch refresh token");
-//     }
-//     return response.data;
-//   }
-// );
 
 export const logout = () => ({
   type: LOGOUT,
