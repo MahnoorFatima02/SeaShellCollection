@@ -40,12 +40,20 @@ function ShellForm() {
       setWarning("");
       navigate('/shells');
     } catch (error) {
-      if (error.response && error.response.status === 401) {
-        setWarning("⚠️ Please login to continue!");
+    if (error.response && error.response.status === 401) {
+      setWarning("⚠️ Please login to continue!");
+    } else if (error.response && error.response.status === 422) {
+      const details = error.response.data?.detail;
+      if (Array.isArray(details)) {
+        const messages = details.map((d) => d.msg).join(" ");
+        setWarning(`⚠️ Invalid form data: ${messages}`);
       } else {
-        setWarning("Something went wrong.");
+        setWarning("⚠️ Invalid form data: Please check your input and try again.");
       }
+    } else {
+      setWarning("Something went wrong.");
     }
+  }
   };
 
   return (

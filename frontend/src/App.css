@@ -342,8 +342,8 @@ h1 {
     font-size: 0.7rem;
   position: fixed;
   top: 84px;
-  right: 20px;
-  z-index: 100;
+  right: 24px;
+  z-index: 10;
 }
 
   /* Not Found Page   */

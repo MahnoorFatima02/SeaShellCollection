@@ -17,8 +17,9 @@ SeaShell Collection is a full-stack web application for managing sea shells, bui
 <p>
 <img src="https://github.com/MahnoorFatima02/kone-challenge/blob/main/Images/MainPage.png" alt="Main Page" width="350" height="180" /> &nbsp;&nbsp;
 <img src="https://github.com/MahnoorFatima02/kone-challenge/blob/main/Images/ShellAddForm.png" alt="Add SeaShell page" width="350" height="180" /> &nbsp;&nbsp;
-<img src="https://github.com/MahnoorFatima02/kone-challenge/blob/main/Images/RequiredFields.png" alt="Required Fields" width="350" height="180" /> &nbsp;&nbsp;
+<img src="https://github.com/MahnoorFatima02/SeaShellCollection/blob/deploy/Images/Login.png" alt="Required Fields" width="350" height="180" /> &nbsp;&nbsp;
 <img src="https://github.com/MahnoorFatima02/kone-challenge/blob/main/Images/ShellCollection.png" alt="SeaShell Collection" width="350" height="180" /> &nbsp;&nbsp;
+<img src="https://github.com/MahnoorFatima02/SeaShellCollection/blob/deploy/Images/sonarqube-analysis.png" alt="SeaShell Collection" width="350" height="180" /> &nbsp;&nbsp;
 </p>
 
 ---
@@ -62,30 +63,15 @@ SeaShellProject/
 
 ## Prerequisites
 
+
 - Python 3.8+
 - Node.js 16+
 - PostgreSQL (Neon cloud or local)
-- fastapi
-- uvicorn
-- sqlalchemy
-- asyncpg
-- alembic
-- python-dotenv
-- pydantic
-- passlib[bcrypt]
-- python-jose[cryptography]
-- pytest==6.2.4
-- pytest-asyncio==0.15.1
-- httpx==0.18.2
-- pytest-mock==3.6.1
-- aiomysql
-- testcontainers
-- pytest-cov
-- asyncmy
-- openai
-- python-multipart
-- asyncpg
-- psycopg2-binary
+- Main Python dependencies: FastAPI, SQLAlchemy, Alembic, asyncpg, Pydantic, Uvicorn, etc.
+- Main frontend dependencies: React, Redux, Vite, Axios, ESLint, etc.
+
+For the full list of dependencies, see [`backend/requirements.txt`](backend/requirements.txt).
+For the full list of frontend dependencies, see [`frontend/package.json`](frontend/package.json).
 
 ---
 
@@ -298,7 +284,5 @@ The project uses **SonarQube** for comprehensive static code analysis, focusing 
   Recommended: Add GitHub Actions for automated testing and linting.
 
 ---
-
-**Enjoy your SeaShell Collection app!**
 
 
