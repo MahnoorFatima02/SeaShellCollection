@@ -51,7 +51,7 @@ The frontend code is organized as follows:
 
 **package.json**: Contains the dependencies and scripts for the frontend application.
 
-## Backend Endpoints and Error Handling
+## Backend Endpoints
 
 ### Endpoints
 
@@ -89,8 +89,6 @@ _400 Bad Request_ : Username already exists.
 }
 ```
 
----
-
 2. **User Login**
 
 *Endpoint:* [POST] /api/v1/login
@@ -119,8 +117,6 @@ _401 Unauthorized_ : Invalid credentials.
 }
 ```
 
----
-
 #### SeaShells
 
 1. **Create a Shell**
@@ -148,8 +144,6 @@ _400 Bad Request_ : The request body is missing required fields or contains inva
 _401 Unauthorized_ : Missing or invalid access token.  
 _500 Internal Server Error_ : An unexpected error occurred on the server.
 
----
-
 2. **Get All Shells**
 
 *Endpoint:* [GET] /api/v1/shells
@@ -160,8 +154,6 @@ _500 Internal Server Error_ : An unexpected error occurred on the server.
 
 _200 OK_ : The request was successful, and the response contains an array of shell records.  
 _500 Internal Server Error_ : An unexpected error occurred on the server.
-
----
 
 3. **Get a Shell by ID**
 
@@ -181,8 +173,6 @@ _200 OK_ : The request was successful, and the response contains the shell recor
 _404 Not Found_ : The shell record with the specified ID does not exist.  
 _401 Unauthorized_ : Missing or invalid access token.  
 _500 Internal Server Error_ : An unexpected error occurred on the server.
-
----
 
 4. **Update a Shell**
 
@@ -214,8 +204,6 @@ _404 Not Found_ : The shell record with the specified ID does not exist.
 _401 Unauthorized_ : Missing or invalid access token.  
 _500 Internal Server Error_ : An unexpected error occurred on the server.
 
----
-
 5. **Delete a Shell**
 
 *Endpoint:* [DELETE] /api/v1/shells/{id}  
@@ -234,8 +222,6 @@ _204 No Content_ : The shell record was successfully deleted.
 _404 Not Found_ : The shell record with the specified ID does not exist.  
 _401 Unauthorized_ : Missing or invalid access token.  
 _500 Internal Server Error_ : An unexpected error occurred on the server.
-
----
 
 6. **Suggest Shell Species (GBIF)**
 
@@ -262,8 +248,6 @@ _200 OK_ : Returns a list of suggested species.
 }
 ```
 _500 Internal Server Error_ : GBIF API error or unexpected error.
-
----
 
 7. **Suggest Creative Shell (LLM)**
 
@@ -338,7 +322,7 @@ These error handling mechanisms ensure that the API provides clear and informati
 
 ### Frameworks and Libraries
 
-**FASTAPI**
+1. **FASTAPI**
 
 FastAPI is a modern, high-performance web framework for building APIs with Python 3.7+ based on standard Python type hints. Here are its advantages over other frameworks like Flask or Django:
 
@@ -363,7 +347,7 @@ FastAPI is a modern, high-performance web framework for building APIs with Pytho
   You can build production-ready APIs with less code compared to Django (which is more monolithic) or Flask (which requires more manual setup for validation and docs).
 
 
-**SQLAlchemy**
+2. **SQLAlchemy**
 
 #### The project uses SQLAlchemy as an ORM for interacting with the database.
 
@@ -380,7 +364,7 @@ FastAPI is a modern, high-performance web framework for building APIs with Pytho
   Works seamlessly with FastAPI’s dependency injection and async request handling.
 
 
-**Alembic**
+3. **Alembic**
 
 #### It uses Alembic for database migrations.
 
@@ -413,9 +397,7 @@ FastAPI is a modern, high-performance web framework for building APIs with Pytho
 - **Automation**:  
   No need to manually write SQL for every schema change; Alembic can autogenerate migrations based on your models.
 
-
-
-**Swagger-UI**
+4. **Swagger-UI**
 
 #### Swagger-UI to easily communication with Frontend developers, it provides documentation for all the endpoints of API. 
 
@@ -424,7 +406,7 @@ FastAPI is a modern, high-performance web framework for building APIs with Pytho
 - _Interactive Documentation_: It allows developers to interact with the API directly from the documentation, making it easier to test and understand the API's functionality.
 
 
-**Pytest**
+5. **Pytest**
 **Testing Frameworks**
 
 - _Simplicity and Power_: Pytest is a powerful testing framework that is simple to use and provides many features for writing and running tests.
@@ -444,11 +426,13 @@ FastAPI is a modern, high-performance web framework for building APIs with Pytho
 - _CI/CD Friendly_: Testcontainers makes it easy to run integration tests in CI/CD pipelines without manual database setup.
 
 
-**Containerization**
+6. **Containerization**
 
 #### Docker Compose
 
 The project uses Docker Compose to containerize the PostgresSQL database. It starts the PostgresSQL container and sets up the necessary environment variables for the application to connect to the database.
+
+---
 
 ## Frontend Design Choices
 
@@ -511,7 +495,7 @@ The project uses Docker Compose to containerize the PostgresSQL database. It sta
 
 ---
 
-**Static Code Analysis**
+## Static Code Analysis
 
 Static code analysis is an essential practice in modern software development, helping to ensure code quality, maintainability, and security before code is even run. In the SeaShell API project, we use several static analysis tools for both the backend and frontend:
 
@@ -535,7 +519,7 @@ Static code analysis is an essential practice in modern software development, he
 
 ---
 
-**Future Developments**
+##Future Developments
 
 - **Admin Role:**  
   Introduce an admin role with special privileges. Only admins will be able to add, update, or remove shells, while regular users can view and suggest shells. This will improve data integrity and allow for better content moderation.
