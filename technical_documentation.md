@@ -274,7 +274,7 @@ _500 Internal Server Error_ : LLM API error or unexpected error.
 
 ---
 
-### Error Handling
+## Error Handling
 
 The SeaShell API includes error handling capabilities to ensure that appropriate responses are returned for various error conditions. Here are some of the key error handling mechanisms:
 
@@ -519,7 +519,7 @@ Static code analysis is an essential practice in modern software development, he
 
 ---
 
-##Future Developments
+## Future Developments
 
 - **Admin Role:**  
   Introduce an admin role with special privileges. Only admins will be able to add, update, or remove shells, while regular users can view and suggest shells. This will improve data integrity and allow for better content moderation.
