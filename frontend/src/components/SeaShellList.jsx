@@ -43,11 +43,23 @@ const SeaShellList = () => {
                     {Array.isArray(seashells) && seashells.length > 0 ? (
                         seashells.map(shell => (
                             <div key={shell.id} className="seashell-card">
-                                <h3>{shell.name}</h3>
-                                <p>Species: {shell.species}</p>
-                                <p>Description: {shell.description}</p>
-                                <p>Location: {shell.location}</p>
-                                <p>Size: {shell.size}</p>
+    <h3 style={{ textAlign: "center" }}>{shell.name}</h3>
+   <div className="shell-field">
+        <span className="shell-label">Species:</span>
+        <span className="shell-value">{shell.species}</span>
+    </div>
+    <div className="shell-field">
+        <span className="shell-label">Description:</span>
+        <span className="shell-value">{shell.description}</span>
+    </div>
+    <div className="shell-field">
+        <span className="shell-label">Location:</span>
+        <span className="shell-value">{shell.location}</span>
+    </div>
+    <div className="shell-field">
+        <span className="shell-label">Size:</span>
+        <span className="shell-value">{shell.size}</span>
+    </div>
                                 <button onClick={() => handleRemoveSeashell(shell.id)}>Remove</button>
                                 <button onClick={() => handleEdit(shell)}>Edit</button>
                             </div>
